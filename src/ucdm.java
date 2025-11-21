@@ -289,7 +289,7 @@ class AppConfig {
     private int maxCreditsPerSemester;
 
     private AppConfig() {
-        this.dataDirectory = "ccrm_data";
+        this.dataDirectory = "ucdm_data";
         this.maxCreditsPerSemester = 24;
         createDataDirectory();
     }
@@ -636,7 +636,7 @@ class CLI {
                 case "7": generateReports(); break;
                 case "8": showJavaPlatformInfo(); break;
                 case "0":
-                    System.out.println("Exiting CCRM. Goodbye!");
+                    System.out.println("Exiting ucdm. Goodbye!");
                     break mainLoop;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -1006,7 +1006,7 @@ class CLI {
     }
 }
 
-public class CCRM {
+public class ucdm {
     public static void main(String[] args) {
         CLI cli = new CLI();
         cli.start();
