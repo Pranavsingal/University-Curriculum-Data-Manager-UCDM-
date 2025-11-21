@@ -1,94 +1,93 @@
 # University Curriculum Data Manager (UCDM)
 
-**University Curriculum Data Manager (UCDM)** is a comprehensive software solution designed to streamline the management of university curriculum data. It facilitates the organization, storage, and retrieval of course details, student enrollments, faculty information, and academic schedules, ensuring data integrity and accessibility for educational institutions.
+**UCDM** is a robust Command Line Interface (CLI) Java application designed to manage university academic records. It handles the lifecycle of students, courses, instructors, enrollments, and grading systems with persistent data storage using CSV files.
 
 ## 🚀 Features
 
-* **Course Management**: Create, update, and delete course listings, including credits, prerequisites, and descriptions.
-* **Faculty & Department Management**: Organize faculty members by department and assign them to specific courses.
-* **Student Enrollment**: Manage student data and track course enrollments.
-* **Curriculum Mapping**: Visualise and manage the structure of degree programs and their requirements.
-* **Search & Filtering**: Efficiently search through curriculum data using various filters.
-* **Data Export**: Export curriculum reports in standard formats (PDF, CSV).
+### 🎓 Student Management
+* **Registration & Profiles:** Register new students with unique IDs and manage their profiles.
+* **Search:** Find students by name, registration number, or email using Java Streams API.
+* **Transcripts:** Generate detailed transcripts that include enrolled courses, grades, and automatically calculated GPA.
 
-## 🛠️ Tech Stack
+### 📚 Course Management
+* **Course Creation:** specific Flexible course creation using the **Builder Design Pattern**.
+* **Advanced Filtering:** Search courses by Instructor, Department, or Semester (SPRING, SUMMER, FALL).
+* **Credit System:** Enforces a maximum credit limit (default 24) per semester to prevent overloading.
 
-**Note to Developer:** *[Update this section with your specific technologies]*
+### 📝 Enrollment & Grading
+* **Enrollment Logic:** Handles student course registration while checking for duplicate enrollments.
+* **Grading Scale:** Records marks and automatically converts them to letter grades (S, A, B, C, D, E, F) and grade points.
 
-* **Frontend:** [e.g., HTML5, CSS3, JavaScript, React.js]
-* **Backend:** [e.g., Python (Flask/Django), Node.js, Java (Spring Boot)]
-* **Database:** [e.g., MySQL, PostgreSQL, MongoDB, SQLite]
-* **Version Control:** Git & GitHub
+### 💾 Data Persistence & System
+* **CSV Import/Export:** Seamlessly import and export data for Students and Courses (`students.csv`, `courses.csv`).
+* **Backup System:** Automated backup functionality that creates timestamped snapshots of the data directory.
+* **Singleton Configuration:** Centralized management of application settings (e.g., data directory paths).
 
-## ⚙️ Installation & Setup
+---
 
-Follow these steps to set up the project locally.
+## 🛠️ Technical Concepts
+
+This project demonstrates proficiency in Core Java and Object-Oriented Programming (OOP) principles:
+
+* **Design Patterns:**
+    * **Singleton:** Used in `AppConfig` to manage global application state.
+    * **Builder:** Used in `Course.Builder` to construct complex Course objects cleanly.
+* **OOP Pillars:**
+    * **Inheritance:** `Student` and `Instructor` extend the abstract `Person` class.
+    * **Polymorphism:** Overriding methods like `getProfile()` and `toString()`.
+    * **Abstraction:** Usage of interfaces like `Searchable<T>` and `Persistable`.
+* **Modern Java Features:**
+    * **Java Streams:** Used extensively for filtering lists and processing collections.
+    * **Switch Expressions:** concise control flow in the CLI menu.
+    * **Java NIO:** Efficient file handling for backups and CSV parsing.
+
+---
+
+## 💻 Installation & Usage
 
 ### Prerequisites
+* **Java Development Kit (JDK):** Version 14 or higher (required for switch expressions).
 
-* [e.g., Python 3.8+ or Node.js v14+]
-* [e.g., MySQL Server]
-* Git
+### Steps to Run
 
-### Steps
-
-1.  **Clone the repository**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/Pranavsingal/University-Curriculum-Data-Manager-UCDM-.git](https://github.com/Pranavsingal/University-Curriculum-Data-Manager-UCDM-.git)
     cd University-Curriculum-Data-Manager-UCDM-
     ```
 
-2.  **Install Dependencies**
-    *[If using Python]*
+2.  **Compile the source code:**
     ```bash
-    pip install -r requirements.txt
-    ```
-    *[If using Node.js]*
-    ```bash
-    npm install
+    javac ucdm.java
     ```
 
-3.  **Configure Environment Variables**
-    * Create a `.env` file in the root directory.
-    * Add your database credentials and secret keys:
-        ```env
-        DB_HOST=localhost
-        DB_USER=root
-        DB_PASS=yourpassword
-        SECRET_KEY=your_secret_key
-        ```
-
-4.  **Run Database Migrations**
+3.  **Run the application:**
     ```bash
-    [Insert command to initialize DB, e.g., python manage.py migrate]
+    java ucdm
     ```
 
-5.  **Start the Application**
-    ```bash
-    [Insert command to run app, e.g., python app.py or npm start]
+4.  **Menu Navigation:**
+    The application will launch a main menu:
+    ```text
+    --- Main Menu ---
+    1. Manage Students
+    2. Manage Courses
+    3. Manage Enrollments
+    4. Manage Grades
+    5. Import/Export Data
+    6. Backup Operations
+    7. Generate Reports
+    0. Exit
     ```
 
-## 📖 Usage
+---
 
-1.  Open your browser and navigate to `http://localhost:3000` (or your specific port).
-2.  Log in using the administrator credentials (if applicable).
-3.  Use the dashboard to navigate through Courses, Faculty, and Student sections.
+## 📂 Data Format
 
-## 🤝 Contributing
+The application reads and writes data to the `ucdm_data` directory.
 
-Contributions are welcome! Please follow these steps:
-
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/YourFeature`).
-3.  Commit your changes (`git commit -m 'Add some feature'`).
-4.  Push to the branch (`git push origin feature/YourFeature`).
-5.  Open a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-* **GitHub**: [Pranavsingal](https://github.com/Pranavsingal)
-* **Project Link**: [https://github.com/Pranavsingal/University-Curriculum-Data-Manager-UCDM-](https://github.com/Pranavsingal/University-Curriculum-Data-Manager-UCDM-)
+### 1. Students (`students.csv`)
+**Format:** `ID,RegNo,Name,Email,IsActive,CreatedDate`
+```csv
+S001,2023001,Pranav Singal,pranav.singal@student.edu,true,2025-11-21T22:27:03
+S002,2023002,Sarvagya Joshi,sarvagya.joshi@student.edu,true,2025-11-21T22:27:03
